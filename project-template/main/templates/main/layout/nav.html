@@ -1,0 +1,27 @@
+{% load static %}
+<div class="nav-wrapper">
+  <input type="checkbox" id="nav-menustate" class="visually-hidden" aria-visible="false" tabindex="-1">
+  <nav class="container">
+    <ul>
+      <li>
+      <img src="{% static 'img/icon.svg' %}" alt="Django Bedrock icon" width="32" height="32" /> <span class="visually-hidden--sm">Django Bedrock</span>
+      </li>
+      <li>
+        <label for="nav-menustate" id="nav-menustate__toggle" class="outline" tabindex=0 role="button">
+          <span class="nav-menustate__toggle-hidden">
+            Show menu
+          </span>
+          <span class="nav-menustate__toggle-visible">
+            Hide menu
+          </span>
+        </label>
+      </li>
+    </ul>
+    <ul>
+      {% include "main/layout/nav-item.html" with href="/" label="Home" %}
+      {% include "main/layout/nav-item.html" with href="/bar" label="Another" %}
+      {% include "main/layout/nav-item.html" with href="/bar" label="Another" %}
+      {% include "main/layout/nav-item.html" with href="/bar" label="Another" %}
+    </ul>
+  </nav>
+</div>

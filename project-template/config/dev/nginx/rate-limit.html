@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>Server Unavailable</title>
+    <style>
+        html {
+            background: #F5F6F9;
+            font-size: 1rem;
+            font-family: sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+        body {
+            margin: 0 auto;
+            max-width: 600px;
+            background: #fff;
+            box-shadow: 0 10px 23px rgba(0, 0, 0, 0.08);
+            padding: 2rem;
+        }
+        h1 {
+            background: #dfdfdf;
+            margin: -2rem -2rem 2rem -2rem;
+            padding: 1.125rem 2rem 1.125rem 1.5rem;
+            line-height: 1rem;
+        }
+        a {
+            color: #006FC8;
+            text-decoration: none;
+        }
+    </style>
+    </head>
+    <body>
+    <h1>Server unavailable</h1>
+
+    <p>Your last request was blocked because there have been too many requests from your IP address in a short period of time. Please wait a couple of minutes and then try again.</p>
+    <div id="otherInfo" style="display:none">
+    <p>Debugging information:</p>
+    <ul>
+        <li>HTTP code: 503 Service Unavailable</li>
+    </ul>
+    </div>
+    <script>
+        var container = document.getElementById("otherInfo");
+        var list = container.getElementsByTagName("ul")[0];
+        function addItem(header, value) {
+            var item = document.createElement("li");
+            var headerElm = document.createTextNode(header + ": ");
+            var valueElm = document.createTextNode(value);
+            item.appendChild(headerElm);
+            item.appendChild(valueElm);
+            list.appendChild(item);
+        }
+        addItem("url", window.location);
+        addItem("time", (new Date()).toISOString());
+        container.style.display = '';
+    </script>
+    </body>
+</html>

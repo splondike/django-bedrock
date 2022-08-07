@@ -1,0 +1,13 @@
+{% extends "main/layout/layout.html" %}
+
+{% block title %}Homepage{% endblock %}
+{% block content %}
+    <h1>Page not found</h1>
+    <p>This page could not be found. You might check you typed it in correctly, or just use the navigation above to find what you were looking for.</p>
+    <p>Debugging information:</p>
+    <ul>
+        <li>HTTP code: 404 Not Found</li>
+        <li>url: {{url}}</li>
+        <li>time: {% now "c" %}</li>
+    </ul>
+{% endblock %}

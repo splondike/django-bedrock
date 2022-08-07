@@ -1,0 +1,57 @@
+version: "3.7"
+
+services:
+    backend:
+        # These two let you easily use PDB. See scripts/dev-backend-attach.sh
+        stdin_open: true
+        tty: true
+
+        build:
+            context: .
+            dockerfile: ./config/dev/backend/Dockerfile
+        command: bash /app/config/dev/backend/start
+        volumes:
+            - .:/app:z
+        ports:
+            - 8000:8000
+        depends_on:
+            - database
+        environment:
+            - DEBUG=true
+            - EMAIL_HOST=mail
+
+    frontend:
+        build:
+            context: .
+            dockerfile: ./config/dev/frontend/Dockerfile
+        volumes:
+            - ./main/:/app/main:z
+            - ./package.json:/app/package.json:z
+            - ./package-lock.json:/app/package-lock.json:z
+        ports:
+            - 3000:3000
+        depends_on:
+            - backend
+
+    nginx:
+        image: nginx:latest
+        command: /dev-config/nginx-startup.sh
+        volumes:
+            - "./config/dev/nginx/nginx.conf:/etc/nginx/conf.d/default.conf:z,ro"
+            # If you volume mount files that don't exist, docker will create
+            # a folder on the host automatically. So bind in the whole
+            # directory
+            - "./config/dev/nginx/:/dev-config/:z,ro"
+        ports:
+            - 443:443
+            - 80:80
+        links:
+            - backend
+
+    database:
+        image: postgres:12.0-alpine
+
+    mail:
+        image: djfarrelly/maildev
+        # Explicit command is so nginx can proxy to it on the /maildev path
+        command: bin/maildev --web 80 --smtp 25 --base-pathname /maildev

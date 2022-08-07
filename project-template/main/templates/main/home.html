@@ -1,0 +1,96 @@
+{% extends "main/layout/layout.html" %}
+
+{% block title %}Homepage{% endblock %}
+{% block content %}
+  <h1>Homepage</h1>
+  <p>Hello, it is {{time}}</p>
+
+  <h2>Add element</h2>
+  <form>
+    <label for="name" class="errormessage">Name:</label>
+    <input id="name" aria-invalid="true" aria-errormessage="name_error" value="Bob">
+    <p id="name_error" class="errormessage">That name is already used, would you consider changing your name to Fred?</p>
+    <label for="starsign">Starsign:</label>
+    <select id="starsign" required>
+      <option value="">Select</option>
+      <option value="Aries">Aries</option>
+      <option value="Pisces">Pisces</option>
+    </select>
+
+    <input type="submit" role="button">
+    <a href="#" role="button" class="secondary outline">Cancel</a>
+  </form>
+
+  <h2>Items</h2>
+
+  <div class="data-table">
+    <form>
+      <label for="name_filter">Name:</label>
+      <input id="name_filter">
+
+      <label for="starsign_filter">Starsign:</label>
+      <select id="starsign_filter">
+        <option value="">Select</option>
+        <option value="Aries">Aries</option>
+        <option value="Pisces">Pisces</option>
+      </select>
+
+      <input type="submit" value="Filter">
+    </form>
+
+    <div class="data-table__table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th><a href="#">Name&nbsp;&#x25B2;</a></th>
+            <th><a href="#">Starsign</a></th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>1</th>
+            <th>Foobar</th>
+            <th>Aries</th>
+            <th><a href="#">Delete</a></th>
+          </tr>
+          <tr>
+            <th>2</th>
+            <th>Baz</th>
+            <th>Virgo</th>
+            <th><a href="#">Delete</a></th>
+          </tr>
+          <tr>
+            <th>3</th>
+            <th>Flip</th>
+            <th>Pisces</th>
+            <th><a href="#">Delete</a></th>
+          </tr>
+          <tr>
+            <th>4</th>
+            <th>Grok</th>
+            <th>Libra</th>
+            <th><a href="#">Delete</a></th>
+          </tr>
+          <tr>
+            <th>5</th>
+            <th>Chorp</th>
+            <th>Capricorn</th>
+            <th><a href="#">Delete</a></th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <nav>
+      <ul>
+        <li>Previous</li>
+        <li>1</li>
+        <li><a href="#">2</a></li>
+        <li>&hellip;</li>
+        <li><a href="#">Next</a></li>
+      </ul>
+    </nav>
+  </div>
+{% endblock %}

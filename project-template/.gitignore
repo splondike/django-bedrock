@@ -1,0 +1,9 @@
+*.py?
+__pycache__
+node_modules
+main/static/
+static/
+.parcel-cache
+
+config/dev/nginx/nginx-local.crt
+config/dev/nginx/nginx-local.key

@@ -1,0 +1,60 @@
+{% load static %}
+{% load security %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="A Django starter template">
+
+    <meta property="og:title" content="Django Bedrock">
+    {# See https://ogp.me/#types #}
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{request.build_absolute_uri}}">
+    <meta property="og:image" content="{% static "img/icon.svg" %}">
+
+    <link rel="icon" href="{% static "img/icon.svg" %}" type="image/svg+xml">
+    <link rel="icon" href="{% static "img/icon.png" %}" type="image/png">
+    <link rel="shortcut icon" href="{% static "img/favicon.ico" %}" type="image/png">
+    <link rel="apple-touch-icon" href="{% static "img/icon.png" %}">
+
+    <meta name="color-scheme" content="dark light">
+
+    {# Use @import instead of <link> so I can add layer decl to main.css cleanly #}
+    <style>
+    @import url("{% static "css/vendor.css" %}");
+    @import url("{% static "css/main.css" %}") layer(app);
+    </style>
+<style>
+</style>
+
+    <title>{% block title %}Django Bedrock{% endblock %}</title>
+  </head>
+<body>
+  {% include "main/layout/nav.html" %}
+
+  <main class="container">
+  {% if messages %}
+  <ul class="flash-messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+
+  {% block content %}{% endblock %}
+  </main>
+
+  <script {% content_security_policy_nonce %}>
+  window.logConfig = {
+    errorPath: "{{js_error_log_path}}",
+    errorLogProb: {{js_error_log_probability}}
+  };
+  </script>
+  <script {% content_security_policy_nonce %} src="{% static "js/main.js" %}"></script>
+  {% if debug %}
+  <script {% content_security_policy_nonce %} src="/livereload/livereload.js?port=443&path=livereload/livereload/"></script>
+  {% endif %}
+</body>
+</html>

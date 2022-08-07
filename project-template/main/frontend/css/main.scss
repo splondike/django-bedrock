@@ -1,0 +1,154 @@
+// SASS stuff
+
+// Can't use picocss mixins in this file
+$sm-breakpoint: 576px;
+$md-breakpoint: 768px;
+
+// Color theming
+
+[data-theme="light"], :root:not([data-theme="dark"]) {
+    --primary: hsl(133deg 28% 40%);
+    --primary-hover: hsl(133deg 28% 60%);
+    --primary-bg-lo: hsl(133deg 28% 93%);
+    --primary-bg-hi: hsl(133deg 28% 81%);
+    --font-size: 16px;
+}
+@media only screen and (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+        --primary-bg-lo: hsl(133deg 28% 7%);
+        --primary-bg-hi: hsl(133deg 28% 19%);
+    }
+}
+
+// Nav
+
+.nav-wrapper {
+    background: linear-gradient(0, var(--primary-bg-hi), var(--primary-bg-lo));
+}
+
+// Mobile menu
+#nav-menustate__toggle {
+    display: none;
+}
+@media only screen and (max-width: $sm-breakpoint) {
+    #nav-menustate__toggle {
+        display: block;
+    }
+    .nav-menustate__toggle-hidden {
+        display: block;
+    }
+    .nav-menustate__toggle-visible {
+        display: none;
+    }
+
+    #nav-menustate ~ nav ul:first-of-type {
+        flex-grow: 1;
+        margin-left: 0;
+
+        li:first-child {
+            flex-grow: 1;
+        }
+    }
+    #nav-menustate:checked ~ nav ul:first-of-type {
+        position: sticky;
+        z-index: 1;
+        background: var(--primary-bg-hi);
+
+        .nav-menustate__toggle-hidden {
+            display: none;
+        }
+        .nav-menustate__toggle-visible {
+            display: block;
+        }
+    }
+
+    #nav-menustate ~ nav ul:last-of-type {
+        display: none;
+        background: var(--primary-bg-hi);
+        position: fixed;
+        overflow-y: auto;
+        overscroll-behavior-y: contain;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+        padding-top: 5rem;
+        & > li {
+            display: block;
+        }
+        a {
+            display: block;
+            text-align: center;
+        }
+    }
+    #nav-menustate:checked ~ nav ul:last-of-type {
+        display: block;
+    }
+}
+
+// Dark mode doesn't do the right thing with the link colors by default
+@media only screen and (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .nav-wrapper a {
+        color: var(--primary-hover);
+    }
+    :root:not([data-theme="light"]) .nav-wrapper a:is([aria-current], :hover, :active, :focus), .nav-wrapper [role="link"]:is([aria-current], :hover, :active, :focus) {
+        color: var(--primary);
+    }
+}
+
+// Flash messages
+
+.flash-messages {
+    padding: 0;
+
+    li {
+        list-style: none;
+        padding: 1rem;
+        border: 2px solid var(--primary);
+        border-bottom-width: 4px;
+        border-radius: 0.25rem;
+
+        &.error {
+            background: none;
+            border-color: var(--form-element-invalid-message-color);
+        }
+    }
+}
+
+// Data table
+
+.data-table {
+    & > form {
+        --form-element-spacing-vertical: 0.25rem;
+    }
+    input:not([type="submit"]), select {
+        --form-element-spacing-horizontal: 0.25rem;
+    }
+    .data-table__table-wrapper {
+        overflow-x: auto;
+    }
+
+    & > nav {
+        display: flex;
+        justify-content: center;
+        li, li a {
+            text-align: center;
+            min-width: 2rem;
+        }
+    }
+}
+
+@media only screen and (min-width: $md-breakpoint) {
+    .data-table > form {
+        --form-element-spacing-vertical: 0.25rem;
+        --spacing: 0;
+
+        label, input:not([type="checkbox"]):not([type="radio"]), select {
+            display: inline-block;
+            width: auto;
+        }
+        input:not([type="checkbox"]):not([type="radio"]), select {
+            margin-right: 1rem;
+        }
+    }
+}

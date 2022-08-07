@@ -1,0 +1,36 @@
+{
+  "scripts": {
+    "build": "npm run build_parcel && npm run build_static_files",
+    "start": "concurrently npm:watch_parcel npm:watch_static_files npm:watch_livereload",
+    "build_parcel": "parcel build --target css --target js",
+    "build_static_files": "copy-and-watch main/frontend/root/** main/static/",
+    "watch_parcel": "parcel watch --no-hmr --target css --target js",
+    "watch_static_files": "copy-and-watch --watch main/frontend/img/** main/static/img/",
+    "watch_livereload": "livereload main/static/"
+  },
+  "targets": {
+    "css": {
+      "source": [
+        "main/frontend/css/main.scss",
+        "main/frontend/css/vendor.scss"
+      ],
+      "distDir": "main/static/css"
+    },
+    "js": {
+      "source": [
+        "main/frontend/js/main.js"
+      ],
+      "distDir": "main/static/js"
+    }
+  },
+  "dependencies": {
+    "@picocss/pico": "^1.5.3"
+  },
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.6.2",
+    "concurrently": "^7.3.0",
+    "copy-and-watch": "^0.1.6",
+    "livereload": "^0.9.3",
+    "parcel": "^2.6.2"
+  }
+}

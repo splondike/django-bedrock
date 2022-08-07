@@ -1,0 +1,13 @@
+{% extends "main/layout/layout.html" %}
+
+{% block title %}Homepage{% endblock %}
+{% block content %}
+    <h1>Server error</h1>
+    <p>There was a server error while processing your request. You might retry again later to see if the issue was transient or has been resolved.</p>
+    <p>Debugging information:</p>
+    <ul>
+        <li>HTTP code: 500 Server Error</li>
+        <li>url: {{url}}</li>
+        <li>time: {% now "c" %}</li>
+    </ul>
+{% endblock %}

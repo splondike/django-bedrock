@@ -1,0 +1,38 @@
+@layer vendor {
+    @import "@picocss/pico/scss/pico.scss";
+
+    // Picocss extensions
+
+    :root {
+        --form-element-invalid-message-color: var(--form-element-invalid-border-color);
+    }
+
+    .visually-hidden {
+        clip: rect(0, 0, 0, 0);
+        position: absolute;
+    }
+    .visually-hidden--sm {
+        // Needs to be in vendor block to get access to SASS mixins
+        @if map-get($breakpoints, "sm") {
+            @media (max-width: map-get($breakpoints, "sm")) {
+                clip: rect(0, 0, 0, 0);
+                position: absolute;
+            }
+        }
+    }
+
+    form .errormessage {
+        color: var(--form-element-invalid-message-color);
+    }
+}
+
+// Don't like the behaviour of buttons being full width by default
+@layer vendor-overrides {
+    button, input[type="submit"], input[type="button"], input[type="reset"], [role="button"] {
+        width: auto;
+
+        &.button--fill {
+            width: 100%;
+        }
+    }
+}
