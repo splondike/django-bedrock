@@ -6,6 +6,8 @@ import os
 
 from pathlib import Path
 
+APP_NAME = "bedrock"
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -154,21 +156,16 @@ LOGGING = {
         "console": {
             "class": "logging.StreamHandler",
             "filters": ["request_context"],
-            "formatter": "console"
+            "formatter": "console",
         }
     },
-    "filters": {
-        "request_context": {
-            "()": "main.logging.RequestContextFilter"
-        }
-    },
+    "filters": {"request_context": {"()": "main.logging.RequestContextFilter"}},
     "formatters": {
         "console": {
-            "format": (
-                "{asctime} {ip_token} {session_token} {trace_id} "
-                "[{name}] {levelname} {message}"
-            ),
-            "style": "{"
+            "format": "level:levelname time:time app:app project:project channel:name request_principal:request_principal session_id_hash:session_id_hash request_id:request_id ip_address:ip_address file:pathname line:lineno message:message exception:exc_info",
+            # Coopting the above string to specify the fields and ordering of the JSON
+            # emitted by this class
+            "class": "main.logging.JsonFormatter",
         }
     },
     "root": {
@@ -180,9 +177,9 @@ LOGGING = {
             # Include all security messages even if they're just INFO
             "handlers": ["console"],
             "level": "INFO",
-            "propagate": False
-        }
-    }
+            "propagate": False,
+        },
+    },
 }
 
 SLOW_REQUEST_THRESHOLD_MS = int(
