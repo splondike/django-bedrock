@@ -70,6 +70,7 @@ MIDDLEWARE = [
     "main.threadlocals.ThreadLocalMiddleware",
     "main.middleware.ContentSecurityPolicyMiddleware",
     "main.middleware.SlowPageLogMiddleware",
+    "main.middleware.NoCacheDefaultMiddleware",
 
     "whitenoise.middleware.WhiteNoiseMiddleware",
 ]

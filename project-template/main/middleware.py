@@ -6,6 +6,7 @@ from collections import OrderedDict
 
 from django.conf import settings
 from django.urls import reverse
+from django.utils.cache import add_never_cache_headers
 
 
 class ContentSecurityPolicyMiddleware:
@@ -104,5 +105,25 @@ class SlowPageLogMiddleware:
         if delta >= settings.SLOW_REQUEST_THRESHOLD_MS:
             path = request.get_full_path()
             self.logger.warning("Slow request %s ms on %s", delta, path)
+
+        return response
+
+
+class NoCacheDefaultMiddleware:
+    """
+    Ensure's we're not caching any of our HTML views by default
+    """
+
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        response = self.get_response(request)
+
+        if not response.has_header("Cache-Control"):
+            # Allow people to set their own headers, but if they don't assume no cache
+            add_never_cache_headers(response)
+            pass
+
 
         return response
