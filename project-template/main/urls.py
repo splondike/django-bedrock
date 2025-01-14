@@ -8,7 +8,7 @@ from main.views.util import (
     JsErrorReportView
 )
 from main.views.pages import HomeView
-from main.views.error import server_error, bad_request, not_found
+from main.views.error import server_error, bad_request, not_found, forbidden
 # Ensure the signals are hooked up
 import main.signals  # noqa: E262, F401, E402
 
@@ -30,3 +30,4 @@ urlpatterns = [
 handler500 = server_error
 handler404 = not_found
 handler400 = bad_request
+handler403 = bad_request
