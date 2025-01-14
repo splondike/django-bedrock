@@ -16,6 +16,7 @@ services:
             - database
         environment:
             - DEBUG=true
+            - SECRET_KEY=DEVKEY
             - EMAIL_HOST=mail
 
     frontend:

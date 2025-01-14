@@ -12,7 +12,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # ------ Security
 
 # Used for signing things, so keep it secret
-SECRET_KEY = os.environ.get("SECRET_KEY", "DEVKEY")
+SECRET_KEY = os.environ["SECRET_KEY"]
 
 # Don't use debug mode in production
 DEBUG = os.environ.get("DEBUG") == "true"
