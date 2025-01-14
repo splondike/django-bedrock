@@ -23,8 +23,10 @@
 
     {# Use @import instead of <link> so I can add layer decl to main.css cleanly #}
     <style>
-    @import url("{% static "css/vendor.css" %}");
-    @import url("{% static "css/main.css" %}") layer(app);
+    @import url("{% static "dist/assets/vendor.css" %}");
+    {% if not debug %}
+    @import url("{% static "dist/assets/main.css" %}") layer(app);
+    {% endif %}
     </style>
 <style>
 </style>
@@ -52,9 +54,11 @@
     errorLogProb: {{js_error_log_probability}}
   };
   </script>
-  <script {% content_security_policy_nonce %} src="{% static "js/main.js" %}"></script>
   {% if debug %}
-  <script {% content_security_policy_nonce %} src="/livereload/livereload.js?port=443&path=livereload/livereload/"></script>
+  <script {% content_security_policy_nonce %} type="module" src="/livereload/@vite/client"></script>
+  <script {% content_security_policy_nonce %} type="module" src="/livereload/main/frontend/js/main.js"></script>
+  {% else %}
+  <script {% content_security_policy_nonce %} src="{% static "dist/js/main.js" %}"></script>
   {% endif %}
 </body>
 </html>

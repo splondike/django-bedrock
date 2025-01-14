@@ -1,4 +1,4 @@
-FROM python:3.10.5
+FROM python:3.12
 
 ENV PYTHONUNBUFFERED 1
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -14,7 +14,7 @@ RUN echo "APT::Install-Recommends \"0\";" >> /etc/apt/apt.conf.d/02recommends &&
     rm -rf /var/lib/apt/lists/* && \
     true
 
-RUN pip install poetry==1.1.13
+RUN pip install poetry==1.8.5
 
 # Requirements are installed here to ensure they will be cached.
 # Turns off virtualenv mode so the deps are installed globally in the container.

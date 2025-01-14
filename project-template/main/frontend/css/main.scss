@@ -12,6 +12,11 @@ $md-breakpoint: 768px;
     --primary-bg-lo: hsl(133deg 28% 93%);
     --primary-bg-hi: hsl(133deg 28% 81%);
     --font-size: 16px;
+    --pico-primary-background: var(--primary);
+    --pico-primary-underline: var(--primary);
+    --pico-primary-hover-background: var(--primary-hover);
+    --pico-primary: var(--primary);
+    --pico-secondary: var(--pico-color);
 }
 @media only screen and (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {

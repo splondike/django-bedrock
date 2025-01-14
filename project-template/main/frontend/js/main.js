@@ -1,3 +1,5 @@
+import "../css/main.scss";
+
 // .js code goes here
 
 window.addEventListener("error", function(e) {

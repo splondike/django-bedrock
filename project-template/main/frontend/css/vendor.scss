@@ -1,5 +1,7 @@
+@use "sass:meta";
+
 @layer vendor {
-    @import "@picocss/pico/scss/pico.scss";
+    @include meta.load-css("@yohns/picocss/scss/pico.scss");
 
     // Picocss extensions
 
@@ -10,19 +12,6 @@
     .visually-hidden {
         clip: rect(0, 0, 0, 0);
         position: absolute;
-    }
-    .visually-hidden--sm {
-        // Needs to be in vendor block to get access to SASS mixins
-        @if map-get($breakpoints, "sm") {
-            @media (max-width: map-get($breakpoints, "sm")) {
-                clip: rect(0, 0, 0, 0);
-                position: absolute;
-            }
-        }
-    }
-
-    form .errormessage {
-        color: var(--form-element-invalid-message-color);
     }
 }
 

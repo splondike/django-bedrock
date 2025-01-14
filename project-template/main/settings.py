@@ -55,10 +55,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
 
-    "django_extensions",
-
-    "main",
-    "main_extras"
+    "main"
 ]
 
 MIDDLEWARE = [
@@ -107,7 +104,7 @@ DATABASES = {
         "HOST": os.environ.get("DB_HOST", "database"),
         "NAME": os.environ.get("DB_NAME", "postgres"),
         "USER": os.environ.get("DB_USER", "postgres"),
-        "PASSWORD": os.environ.get("DB_PASSWORD"),
+        "PASSWORD": os.environ.get("DB_PASSWORD", "password"),
         "PORT": os.environ.get("DB_PORT", "5432"),
     }
 }
