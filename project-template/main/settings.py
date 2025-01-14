@@ -17,6 +17,9 @@ SECRET_KEY = os.environ.get("SECRET_KEY", "DEVKEY")
 # Don't use debug mode in production
 DEBUG = os.environ.get("DEBUG") == "true"
 
+# For contexts where we need absolute URLs, this is the prefix to use
+CANONICAL_URL_BASE = os.environ.get("CANONICAL_URL_BASE", "https://app.localtest.me")
+
 if DEBUG:
     ALLOWED_HOSTS = [
         "localhost",
