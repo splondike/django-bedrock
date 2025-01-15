@@ -16,7 +16,7 @@ Development is via Docker and docker-compose.
 
 To reset your database from scratch run this:
 
-    docker-compose run --rm backend bash -c "./manage.py reset_db --no-input && ./manage.py migrate && ./manage.py createcachetable && ./manage.py seeddb"
+    docker-compose run --rm backend bash -c "./manage.py reset_db && ./manage.py migrate && ./manage.py createcachetable && ./manage.py seeddb"
 
 This will give you an admin@example.com user with the password 'password'
 
