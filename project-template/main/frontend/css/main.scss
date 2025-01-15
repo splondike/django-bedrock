@@ -7,10 +7,10 @@ $md-breakpoint: 768px;
 // Color theming
 
 [data-theme="light"], :root:not([data-theme="dark"]) {
-    --primary: hsl(133deg 28% 40%);
-    --primary-hover: hsl(133deg 28% 60%);
-    --primary-bg-lo: hsl(133deg 28% 93%);
-    --primary-bg-hi: hsl(133deg 28% 81%);
+    --primary: hsl(120deg 28% 40%);
+    --primary-hover: hsl(120deg 28% 20%);
+    --primary-bg-lo: hsl(120deg 28% 93%);
+    --primary-bg-hi: hsl(120deg 28% 81%);
     --font-size: 16px;
     --pico-primary-background: var(--primary);
     --pico-primary-underline: var(--primary);
@@ -23,6 +23,14 @@ $md-breakpoint: 768px;
         --primary-bg-lo: hsl(133deg 28% 7%);
         --primary-bg-hi: hsl(133deg 28% 19%);
     }
+}
+
+button, [type=submit], [type=reset], [type=button], [type=file]::file-selector-button, [role=button] {
+    --pico-color: var(--pico-secondary-inverse);
+}
+
+:is(button,[type=submit],[type=button],[role=button]).outline.secondary, [type=reset].outline {
+    --pico-color: var(--pico-secondary);
 }
 
 // Nav
