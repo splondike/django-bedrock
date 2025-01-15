@@ -9,7 +9,6 @@ package-mode = false
 python = "^3.10"
 Django = "^5.1.4"
 psycopg = "^3.2.3"
-whitenoise = "^6.8.2"
 
 # Hosted deps
 gunicorn = "^23.0.0"

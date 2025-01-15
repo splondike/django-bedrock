@@ -51,8 +51,6 @@ CONTENT_SECURITY_POLICY_REPORT_PROB = float(os.environ.get(
 # ------ Application definition
 
 INSTALLED_APPS = [
-    "whitenoise.runserver_nostatic",
-
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -74,8 +72,6 @@ MIDDLEWARE = [
     "main.middleware.ContentSecurityPolicyMiddleware",
     "main.middleware.SlowPageLogMiddleware",
     "main.middleware.NoCacheDefaultMiddleware",
-
-    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 ROOT_URLCONF = "main.urls"
@@ -205,6 +201,5 @@ if os.environ.get("EMAIL_HOST"):
 
 STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / "static"
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # ------ App specific settings
