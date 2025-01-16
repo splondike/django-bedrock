@@ -2,6 +2,7 @@ import collections
 import hashlib
 import json
 import logging
+import os
 import traceback
 from typing import Optional
 
@@ -80,7 +81,7 @@ class JsonFormatter:
             elif field == "app":
                 val = "django"
             elif field == "project":
-                val = settings.APP_NAME
+                val = os.environ.get("PROJECT_NAME", "bedrock")
             elif field == "message":
                 val = record.getMessage()
             elif field == "exc_info":
