@@ -24,10 +24,11 @@ urlpatterns = [
     path("js-error", JsErrorReportView.as_view(), name="js_error"),
     path("errors/400", bad_request, {"exception": Exception()}),
     path("errors/404", not_found, {"exception": Exception()}),
+    path("errors/403", forbidden, {"exception": Exception()}),
     path("errors/500", server_error),
 ]
 
 handler500 = server_error
 handler404 = not_found
 handler400 = bad_request
-handler403 = bad_request
+handler403 = forbidden
