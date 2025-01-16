@@ -4,7 +4,7 @@ import path from "path";
 export default defineConfig({
     plugins: [],
     build: {
-        outDir: "main/static/dist",
+        outDir: "main/static",
         rollupOptions: {
             // overwrite default .html entry
             input: [
@@ -14,9 +14,9 @@ export default defineConfig({
                 path.resolve(__dirname, "main/frontend/css/vendor.scss"),
             ],
             output: {
-                assetFileNames: "assets/[name].[ext]",
-                chunkFileNames: "chunks/[name].js",
-                entryFileNames: "assets/[name].js",
+                assetFileNames: "[name].[ext]",
+                chunkFileNames: "[name].js",
+                entryFileNames: "[name].js",
             },
         },
     },

@@ -38,3 +38,9 @@ There are some automated tests. You can run these using:
     docker-compose exec backend pytest
 
 If you get an error like `Missing staticfiles manifest entry` then you need to run `./manage.py collectstatic` before running the tests.
+
+### Testing prod container
+
+An example production container is included at `config/prod/`. If you'd like to test this out locally you can use `docker-compose -f docker-compose.prod-test.yml up`.
+
+The container is HTTP only as this is the most common deployment situation; TLS termination is done elsewhere. You can then access the TLS proxied content at https://app.localtest.me/ using the docker-compose setup. You can see the unproxied response at http://app.localtest.me:8080 . The latter may be useful to verify asset compresison as Nginx by default does not compress when behind another instance (it detects this by a Via header which I don't know how to turn off).

@@ -202,4 +202,10 @@ if os.environ.get("EMAIL_HOST"):
 STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / "static"
 
+STORAGES = {
+    "staticfiles": {
+        "BACKEND": "django.contrib.staticfiles.storage.ManifestStaticFilesStorage",
+    },
+}
+
 # ------ App specific settings
