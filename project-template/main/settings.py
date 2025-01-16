@@ -34,8 +34,11 @@ else:
 # Use this header to work out request IP? See main/logging.py
 USE_X_FORWARDED_FOR = True
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
-CSRF_COOKIE_SECURE = os.environ.get("SECURE_COOKIE", str(not DEBUG)) == "true"
-SESSION_COOKIE_SECURE = os.environ.get("SECURE_COOKIE", str(not DEBUG)) == "true"
+CSRF_COOKIE_SECURE = os.environ.get("SECURE_COOKIE", "true") == "true"
+SESSION_COOKIE_SECURE = os.environ.get("SECURE_COOKIE", "true") == "true"
+# See https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#cookie_prefixes
+SESSION_COOKIE_NAME = "__Host-sessionid"
+CSRF_COOKIE_NAME = "__Host-csrftoken"
 
 CONTENT_SECURITY_POLICY_ACTIVE = os.environ.get(
     "CONTENT_SECURITY_POLICY_ACTIVE",
