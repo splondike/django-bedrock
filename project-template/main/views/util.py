@@ -10,15 +10,22 @@ from django.core.signing import TimestampSigner, BadSignature, SignatureExpired
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse, HttpResponse
+from django.views.decorators.cache import cache_page
 
 
 LOGGER = logging.getLogger(__name__)
 
 
+# Cache response in case some of the checks are expensive
+@method_decorator(cache_page(30), name="dispatch")
 class HealthcheckView(View):
     http_method_names = ["get"]
 
     def get(self, request, *args, **kwargs):
+        if len(request.GET) > 0:
+            # Don't allow people to bypass the cache
+            raise Http404
+
         healthchecks = {
             "health_db": self._get_health_db(),
         }
