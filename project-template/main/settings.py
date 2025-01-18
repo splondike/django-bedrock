@@ -52,7 +52,6 @@ CONTENT_SECURITY_POLICY_REPORT_PROB = float(os.environ.get(
 # ------ Application definition
 
 INSTALLED_APPS = [
-    "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",

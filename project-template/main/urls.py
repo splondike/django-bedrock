@@ -1,4 +1,3 @@
-from django.contrib import admin
 from django.urls import path
 
 from main.views.util import (
@@ -14,8 +13,6 @@ import main.signals  # noqa: E262, F401, E402
 
 urlpatterns = [
     path("", HomeView.as_view()),
-
-    path("admin/", admin.site.urls),
 
     # Debug
     path("healthcheck", HealthcheckView.as_view()),
