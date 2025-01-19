@@ -33,7 +33,7 @@ def log_login_failed(sender, credentials, **kwargs):
     if "username" in credentials:
         security_logger.info(
             "Login failure for %s",
-            User.objects.get(username=credentials["username"]).id
+            User.objects.get(email=credentials["username"]).pk
         )
     else:
         security_logger.info(
@@ -77,4 +77,4 @@ def user_changed(
 
 user_logged_in.connect(log_login_success)
 user_login_failed.connect(log_login_failed)
-post_save.connect(user_changed, sender=User)
+# post_save.connect(user_changed, sender=User)

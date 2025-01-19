@@ -20,8 +20,18 @@
     <ul>
       {% include "main/layout/nav-item.html" with href="/" label="Home" %}
       {% include "main/layout/nav-item.html" with href="/bar" label="Another" %}
-      {% include "main/layout/nav-item.html" with href="/bar" label="Another" %}
-      {% include "main/layout/nav-item.html" with href="/bar" label="Another" %}
+
+      {% if user.is_authenticated %}
+      {% url "migrations_list" as migrations_list_href %}
+      {% include "main/layout/nav-item.html" with href=migrations_list_href label="Migrations" %}
+        <form action="{% url 'logout' %}" method="post">
+          {% csrf_token %}
+          <button>Logout</button>
+        </form>
+      {% else %}
+      {% url "login" as login_href %}
+      {% include "main/layout/nav-item.html" with href=login_href label="Login" %}
+      {% endif %}
     </ul>
   </nav>
 </div>

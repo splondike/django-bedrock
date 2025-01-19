@@ -55,8 +55,8 @@ class RequestContextFilter(logging.Filter):
         else:
             record.session_id_hash = "." * 8
 
-        if maybe_request.user.pk is not None:
-            record.request_principal = f"user:{maybe_request.user.pk}"
+        if hasattr(maybe_request, "user"):
+            record.request_principal = maybe_request.user.principal_logging_identifier()
         else:
             record.request_principal = "anon"
 

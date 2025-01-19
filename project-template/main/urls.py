@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 
 from main.views.util import (
     HealthcheckView,
@@ -6,13 +6,15 @@ from main.views.util import (
     CspReportView,
     JsErrorReportView
 )
-from main.views.pages import HomeView
+from main.views.pages import HomeView, MigrationsListView
 from main.views.error import server_error, bad_request, not_found, forbidden
 # Ensure the signals are hooked up
 import main.signals  # noqa: E262, F401, E402
 
 urlpatterns = [
-    path("", HomeView.as_view()),
+    path("", HomeView.as_view(), name="home"),
+    path("migrations", MigrationsListView.as_view(), name="migrations_list"),
+    path("accounts/", include("django.contrib.auth.urls")),
 
     # Debug
     path("healthcheck", HealthcheckView.as_view()),

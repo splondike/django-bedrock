@@ -23,8 +23,6 @@ class Command(BaseCommand):
 
 @transaction.atomic
 def seeddb():
-    User.objects.create_superuser(
-        username="admin@example.com",
-        email="admin@example.com",
-        password="password"
-    )
+    user = User(email="user@example.com")
+    user.set_password("password")
+    user.save()

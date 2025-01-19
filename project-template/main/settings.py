@@ -64,10 +64,10 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
-    "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
 
     "main.threadlocals.ThreadLocalMiddleware",
+    "main.auth.middleware.AuthenticationMiddleware",
     "main.middleware.ContentSecurityPolicyMiddleware",
     "main.middleware.SlowPageLogMiddleware",
     "main.middleware.NoCacheDefaultMiddleware",
@@ -109,6 +109,12 @@ DATABASES = {
 }
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+# ------ Authentication
+
+AUTH_USER_MODEL = "main.User"
+
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/"
 
 # ------ Password validation
 

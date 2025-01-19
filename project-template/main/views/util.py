@@ -12,13 +12,15 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse, HttpResponse
 from django.views.decorators.cache import cache_page
 
+from main.auth.mixins import LoginNotRequiredMixin
+
 
 LOGGER = logging.getLogger(__name__)
 
 
 # Cache response in case some of the checks are expensive
 @method_decorator(cache_page(30), name="dispatch")
-class HealthcheckView(View):
+class HealthcheckView(LoginNotRequiredMixin, View):
     http_method_names = ["get"]
 
     def get(self, request, *args, **kwargs):
@@ -64,7 +66,7 @@ class HealthcheckView(View):
             return "FAIL"
 
 
-class DebugHttpView(View):
+class DebugHttpView(LoginNotRequiredMixin, View):
     """
     Dumps as much of the raw request out as possible. Requires you to be
     signed in as a superuser since the output may be sensitive
@@ -137,7 +139,7 @@ class DebugHttpView(View):
 
 
 @method_decorator(csrf_exempt, name="dispatch")
-class CspReportView(View):
+class CspReportView(LoginNotRequiredMixin, View):
     """
     Logs Content-Security-Policy violation reports.
     """
@@ -159,7 +161,7 @@ class CspReportView(View):
 
 
 @method_decorator(csrf_exempt, name="dispatch")
-class JsErrorReportView(View):
+class JsErrorReportView(LoginNotRequiredMixin, View):
     """
     Logs Javascript error reports from the frontend
     """
