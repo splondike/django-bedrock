@@ -8,8 +8,6 @@ from main.views.util import (
 )
 from main.views.pages import HomeView, MigrationsListView
 from main.views.error import server_error, bad_request, not_found, forbidden
-# Ensure the signals are hooked up
-import main.signals  # noqa: E262, F401, E402
 
 urlpatterns = [
     path("", HomeView.as_view(), name="home"),

@@ -77,4 +77,4 @@ def user_changed(
 
 user_logged_in.connect(log_login_success)
 user_login_failed.connect(log_login_failed)
-# post_save.connect(user_changed, sender=User)
+post_save.connect(user_changed, sender=User)
