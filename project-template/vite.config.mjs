@@ -10,7 +10,8 @@ export default defineConfig({
             input: [
                 // Import main.scss via .js so we get HMR
                 path.resolve(__dirname, "main/frontend/js/main.js"),
-                // TODO: But keep vendor outside 
+                // But keep vendor outside since we want it to be a separate
+                // file for layering purposes
                 path.resolve(__dirname, "main/frontend/css/vendor.scss"),
             ],
             output: {
