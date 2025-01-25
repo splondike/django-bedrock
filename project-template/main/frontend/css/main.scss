@@ -12,6 +12,7 @@ $md-breakpoint: 768px;
     --primary-bg-lo: hsl(120deg 28% 93%);
     --primary-bg-hi: hsl(120deg 28% 81%);
     --font-size: 16px;
+    --text-primary: var(--pict-h2-color);
     --pico-primary-background: var(--primary);
     --pico-primary-underline: var(--primary);
     --pico-primary-hover-background: var(--primary-hover);
@@ -42,6 +43,7 @@ button, [type=submit], [type=reset], [type=button], [type=file]::file-selector-b
 // Mobile menu
 #nav-menustate__toggle {
     display: none;
+    color: var(--pico-primary);
 }
 @media only screen and (max-width: $sm-breakpoint) {
     #nav-menustate__toggle {
@@ -92,6 +94,9 @@ button, [type=submit], [type=reset], [type=button], [type=file]::file-selector-b
         a {
             display: block;
             text-align: center;
+        }
+        button, input[type=submit] {
+            width: 100%;
         }
     }
     #nav-menustate:checked ~ nav ul:last-of-type {

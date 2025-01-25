@@ -24,10 +24,12 @@
       {% if user.is_authenticated %}
       {% url "migrations_list" as migrations_list_href %}
       {% include "main/layout/nav-item.html" with href=migrations_list_href label="Migrations" %}
+      <li>
         <form action="{% url 'logout' %}" method="post">
           {% csrf_token %}
           <button>Logout</button>
         </form>
+      </li>
       {% else %}
       {% url "login" as login_href %}
       {% include "main/layout/nav-item.html" with href=login_href label="Login" %}
