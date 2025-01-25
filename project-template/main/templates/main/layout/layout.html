@@ -51,7 +51,9 @@
   <script {% content_security_policy_nonce %}>
   window.logConfig = {
     errorPath: "{{js_error_log_path}}",
-    errorLogProb: {{js_error_log_probability}}
+    requestId: "{{js_request_id}}",
+    performancePath: "{{js_performance_log_path}}",
+    requestLogProb: {{js_request_log_probability}}
   };
   </script>
   {% if debug %}

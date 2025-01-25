@@ -182,10 +182,15 @@ LOGGING = {
             "level": "INFO",
             "propagate": False,
         },
+        "frontend": {
+            "handlers": ["console"],
+            "level": os.environ.get("DJANGO_LOG_LEVEL_FRONTEND", "INFO"),
+            "propagate": False,
+        }
     },
 }
 
-JS_ERROR_LOG_PROB = float(os.environ.get("JS_ERROR_LOG_PROB", "1.0"))
+JS_REQUEST_LOG_PROB = float(os.environ.get("JS_ERROR_LOG_PROB", "1.0"))
 
 # ------ Email
 

@@ -4,7 +4,8 @@ from main.views.util import (
     HealthcheckView,
     DebugHttpView,
     CspReportView,
-    JsErrorReportView
+    JsErrorReportView,
+    JsPerformanceReportView
 )
 from main.views.pages import HomeView, MigrationsListView
 from main.views.error import server_error, bad_request, not_found, forbidden
@@ -19,6 +20,7 @@ urlpatterns = [
     path("debug-http", DebugHttpView.as_view()),
     path("csp-report", CspReportView.as_view(), name="csp_report"),
     path("js-error", JsErrorReportView.as_view(), name="js_error"),
+    path("js-performance", JsPerformanceReportView.as_view(), name="js_performance"),
     path("errors/400", bad_request, {"exception": Exception()}),
     path("errors/404", not_found, {"exception": Exception()}),
     path("errors/403", forbidden, {"exception": Exception()}),

@@ -180,3 +180,23 @@ class JsErrorReportView(LoginNotRequiredMixin, View):
 
         # No content response
         return HttpResponse(status=204)
+
+
+@method_decorator(csrf_exempt, name="dispatch")
+class JsPerformanceReportView(LoginNotRequiredMixin, View):
+    """
+    Logs Javascript error reports from the frontend
+    """
+
+    http_method_names = ["post"]
+
+    def post(self, request, *args, **kwargs):
+        # Truncate request to stop people abusing the endpoint with huge piles
+        # of content. Could make the JSON data invalid or slice a multibyte
+        # character.
+        content = request.body.decode("utf8")[:1024]
+        logger = logging.getLogger("frontend")
+        logger.info("JS Performance: %s", content)
+
+        # No content response
+        return HttpResponse(status=204)
