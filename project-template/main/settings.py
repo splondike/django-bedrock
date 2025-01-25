@@ -72,7 +72,6 @@ MIDDLEWARE = [
     "main.threadlocals.ThreadLocalMiddleware",
     "main.auth.middleware.AuthenticationMiddleware",
     "main.middleware.ContentSecurityPolicyMiddleware",
-    "main.middleware.SlowPageLogMiddleware",
     "main.middleware.NoCacheDefaultMiddleware",
 ]
 
@@ -185,10 +184,6 @@ LOGGING = {
         },
     },
 }
-
-SLOW_REQUEST_THRESHOLD_MS = int(
-    os.environ.get("SLOW_REQUEST_THRESHOLD_MS", "500")
-)
 
 JS_ERROR_LOG_PROB = float(os.environ.get("JS_ERROR_LOG_PROB", "1.0"))
 

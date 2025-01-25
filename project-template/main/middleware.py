@@ -1,7 +1,5 @@
 import secrets
 import random
-import logging
-import datetime
 from collections import OrderedDict
 
 from django.conf import settings
@@ -84,29 +82,6 @@ class ContentSecurityPolicyMiddleware:
 
     def _generate_nonce(self):
         return secrets.token_hex(16)
-
-
-class SlowPageLogMiddleware:
-    """
-    Logs when pages take more than a given threshold to render. Very basic
-    performance monitor.
-    """
-
-    def __init__(self, get_response):
-        self.get_response = get_response
-        self.logger = logging.getLogger("performance")
-
-    def __call__(self, request):
-        start = datetime.datetime.now()
-        response = self.get_response(request)
-        end = datetime.datetime.now()
-        delta = int((end - start).total_seconds() * 1000)
-
-        if delta >= settings.SLOW_REQUEST_THRESHOLD_MS:
-            path = request.get_full_path()
-            self.logger.warning("Slow request %s ms on %s", delta, path)
-
-        return response
 
 
 class NoCacheDefaultMiddleware:
