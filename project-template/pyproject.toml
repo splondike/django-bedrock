@@ -13,6 +13,9 @@ psycopg = "^3.2.3"
 
 # Hosted deps
 gunicorn = "^23.0.0"
+django-filter = "^24.3"
+django-tables2 = "^2.7.5"
+django-crispy-forms = "^2.3"
 
 [tool.poetry.dev-dependencies]
 pytest = "^8.3.4"

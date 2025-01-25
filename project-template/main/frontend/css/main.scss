@@ -130,23 +130,30 @@ button, [type=submit], [type=reset], [type=button], [type=file]::file-selector-b
 
 // Data table
 
-.data-table {
-    & > form {
-        --form-element-spacing-vertical: 0.25rem;
-    }
-    input:not([type="submit"]), select {
-        --form-element-spacing-horizontal: 0.25rem;
-    }
-    .data-table__table-wrapper {
+.table-container {
+    .table-container__wrapper {
         overflow-x: auto;
     }
 
-    & > nav {
+    th.desc a:after {
+        content: ' \21e7';
+    }
+
+    th.asc a:after {
+        content: ' \21e9';
+    }
+
+    & .pagination {
         display: flex;
         justify-content: center;
         li, li a {
+            list-style: none;
             text-align: center;
             min-width: 2rem;
+        }
+        li.active a {
+            text-decoration: none;
+            --pico-color: var(--text-primary);
         }
     }
 }
@@ -155,13 +162,17 @@ button, [type=submit], [type=reset], [type=button], [type=file]::file-selector-b
     .data-table > form {
         --form-element-spacing-vertical: 0.25rem;
         --spacing: 0;
+        display: flex;
 
-        label, input:not([type="checkbox"]):not([type="radio"]), select {
+        .form-group {
             display: inline-block;
             width: auto;
-        }
-        input:not([type="checkbox"]):not([type="radio"]), select {
             margin-right: 1rem;
+        }
+
+        input[type=submit], button {
+            // Not very elegant or robust. Better would be an invisible <label> standin.
+            margin-top: 1.8rem;
         }
     }
 }

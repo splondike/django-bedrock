@@ -52,13 +52,16 @@ CONTENT_SECURITY_POLICY_REPORT_PROB = float(os.environ.get(
 # ------ Application definition
 
 INSTALLED_APPS = [
+    "main",
+
+    "django_tables2",
+    "crispy_forms",
+
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-
-    "main"
 ]
 
 MIDDLEWARE = [
@@ -214,3 +217,8 @@ STORAGES = {
 }
 
 # ------ App specific settings
+
+# This is a copy of the bootstrap4 theme with a couple of small modifications
+# so it still has a lot of classes in it.
+CRISPY_TEMPLATE_PACK = "crispy_bedrock"
+CRISPY_ALLOWED_TEMPLATE_PACKS = ("crispy_bedrock",)
