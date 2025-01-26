@@ -8,6 +8,7 @@ from django.views.generic.base import TemplateView
 from django.utils import timezone
 
 from main.auth.mixins import LoginNotRequiredMixin, PermissionRequiredMixin
+from main.tasks import background_task
 
 
 class HomeView(LoginNotRequiredMixin, TemplateView):
@@ -19,6 +20,8 @@ class HomeView(LoginNotRequiredMixin, TemplateView):
 
         from django.contrib import messages
         messages.add_message(self.request, messages.INFO, "Hello world.")
+
+        background_task.defer(msg="hello")
 
         return context
 

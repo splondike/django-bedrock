@@ -56,6 +56,7 @@ INSTALLED_APPS = [
 
     "django_tables2",
     "crispy_forms",
+    "procrastinate.contrib.django",
 
     "django.contrib.auth",
     "django.contrib.contenttypes",
