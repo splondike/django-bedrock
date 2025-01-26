@@ -6,9 +6,10 @@ if (typeof window.logErrorsLatch === "undefined") {
     // Probabilistic to avoid server overload. But log everything within
     // a single request for completeness
     window.logRequestLatch = Math.random() <= window.logConfig.requestLogProb;
+    window.logErrorLatch = Math.random() <= window.logConfig.errorLogProb;
 }
 
-if (window.logRequestLatch) {
+if (window.logErrorLatch) {
     window.addEventListener("error", function(e) {
         fetch(
             window.logConfig.errorPath,
@@ -28,7 +29,9 @@ if (window.logRequestLatch) {
             }
         );
     }, false);
+}
 
+if (window.logRequestLatch) {
     window.addEventListener("load", function(e) {
         // Let the load event end before sending performance data, one
         // of the points is the loadEnd event.

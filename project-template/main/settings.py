@@ -191,7 +191,8 @@ LOGGING = {
     },
 }
 
-JS_REQUEST_LOG_PROB = float(os.environ.get("JS_ERROR_LOG_PROB", "1.0"))
+JS_REQUEST_LOG_PROB = float(os.environ.get("JS_REQUEST_LOG_PROB", "1.0"))
+JS_ERROR_LOG_PROB = float(os.environ.get("JS_ERROR_LOG_PROB", "1.0"))
 
 # ------ Email
 

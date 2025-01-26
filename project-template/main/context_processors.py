@@ -30,5 +30,6 @@ def frontend_logging(request):
         "js_error_log_path": reverse("js_error"),
         "js_performance_log_path": reverse("js_performance"),
         "js_request_id": get_request_id(request),
+        "js_error_log_probability": settings.JS_ERROR_LOG_PROB,
         "js_request_log_probability": settings.JS_REQUEST_LOG_PROB
     }
