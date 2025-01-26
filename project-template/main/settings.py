@@ -45,7 +45,7 @@ CONTENT_SECURITY_POLICY_ACTIVE = os.environ.get(
     "active"
 )
 CONTENT_SECURITY_POLICY_REPORT_PROB = float(os.environ.get(
-    "CONTENT_SECURITY_POLICY_ACTIVE",
+    "CONTENT_SECURITY_POLICY_PROB",
     "1.0"
 ))
 

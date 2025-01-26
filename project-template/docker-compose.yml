@@ -18,6 +18,9 @@ services:
             - DEBUG=true
             - SECRET_KEY=DEVKEY
             - EMAIL_HOST=mail
+            # Turn these off in dev, they're a bit noisy
+            - JS_REQUEST_LOG_PROB=0.0
+            - CONTENT_SECURITY_POLICY_ACTIVE=disabled
 
     frontend:
         build:
