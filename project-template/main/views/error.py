@@ -61,10 +61,12 @@ def render_error_page(request: HttpRequest, template_name: str, request_class):
             template.render({
                 "request": request,
                 "url": request.build_absolute_uri(),
-                "request_id": get_request_id(request),
+                "js_request_id": get_request_id(request),
                 # Turn these off for now
                 "js_error_log_path": "",
                 "js_error_log_probability": "0.0",
+                "js_request_log_probability": "0.0",
+                "js_performance_log_path": "",
             }),
             content_type="text/html"
         )
