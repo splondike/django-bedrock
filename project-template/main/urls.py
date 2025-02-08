@@ -7,11 +7,12 @@ from main.views.util import (
     JsErrorReportView,
     JsPerformanceReportView
 )
-from main.views.pages import HomeView, MigrationsListView
+from main.views.pages import DemoJsonAPI, HomeView, MigrationsListView
 from main.views.error import server_error, bad_request, not_found, forbidden
 
 urlpatterns = [
     path("", HomeView.as_view(), name="home"),
+    path("demoapi/<str:id>", DemoJsonAPI.as_view(), name="testapi"),
     path("migrations", MigrationsListView.as_view(), name="migrations_list"),
     path("accounts/", include("django.contrib.auth.urls")),
 

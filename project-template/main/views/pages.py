@@ -4,11 +4,13 @@ import crispy_forms.helper as crispy_helper
 import crispy_forms.layout as crispy_layout
 from django_filters.views import FilterView
 from django.db.migrations.recorder import MigrationRecorder
-from django.views.generic.base import TemplateView
+from django.views.generic.base import TemplateView, View
 from django.utils import timezone
 
 from main.auth.mixins import LoginNotRequiredMixin, PermissionRequiredMixin
+from main.forms import DemoForm
 from main.tasks import background_task
+from main.api_helpers import FormApiMixin, ApiResponse
 
 
 class HomeView(LoginNotRequiredMixin, TemplateView):
@@ -24,6 +26,19 @@ class HomeView(LoginNotRequiredMixin, TemplateView):
         background_task.defer(msg="hello")
 
         return context
+
+
+class DemoJsonAPI(LoginNotRequiredMixin, FormApiMixin, View):
+    form_class = DemoForm
+    field_data_sources = {
+        # Not needed, it's the default
+        # "body_field": ("body", "/data/attributes/body_field"),
+        "path_field": ("path", "id"),
+        "header_field": ("header", "my_header")
+    }
+
+    def form_valid(self, form):
+        return ApiResponse(data={"ok": True})
 
 
 class MigrationsListView(PermissionRequiredMixin, django_tables2.SingleTableMixin, FilterView):
