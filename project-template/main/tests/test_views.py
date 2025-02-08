@@ -1,26 +1,26 @@
-from main.tests.factories import SuperuserFactory, USER_PASSWORD
+from main.tests.factories import UserFactory, USER_PASSWORD
 from main.tests.base import StandardClientTestCase
 
 
-class TestAdminLogin(StandardClientTestCase):
+class TestLogin(StandardClientTestCase):
     def test_can_login(self):
-        # Given a superuser
+        # Given a user
 
         # When we attempt to login to the admin portal as that user
         response = self.client.post(
-            "/admin/login/",
+            "/accounts/login/",
             {
-                "username": self.user.username,
+                "username": self.user.email,
                 "password": USER_PASSWORD,
-                "next": "/admin/"
+                "next": "/"
             }
         )
 
         # Then the attempt is successful
         print(response.content)
         assert response.status_code == 302
-        assert response.url == "/admin/"
+        assert response.url == "/"
 
     def setup_method(self, method):
         super().setup_method(method)
-        self.user = SuperuserFactory()
+        self.user = UserFactory()
