@@ -11,6 +11,8 @@ Project:
 1. Change the name, author etc. in `pyproject.toml`.
 1. Change the blurb in `README.md`.
 1. Add in a LICENSE file for your project.
+1. Search for the string `bedrock` and replace it with your project name (for logging).
+1. Edit `main/settings.py` to update CANONICAL_URL_BASE, 
 
 Frontend:
 
@@ -28,21 +30,11 @@ SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 # Extra functionality
 
-I've only included the things in the template that I would want in pretty much every project. Here are some extra packages you might like to add:
+Here are some extra packages you might like to add:
 
 Python:
-* https://github.com/uptick/django-dramatiq-pg - Alternative to Celery. This package configures it to store the task queue in Postgres.
-* https://huey.readthedocs.io/en/latest/contrib.html#django - Another alternative to celery.
-* https://pypi.org/project/django-mailer/ - Simple email queue stored in the database.
-* https://github.com/vintasoftware/django-templated-email - Nicer way of making emails in Django
-* django-tables2 - Sortable, paginatable tables
-* django-filter - Nice URL based filters for tables2
-* django-crispy-forms - Nice forms
-
-Frontend:
-* css.gg - Nice icons
-* htmx - AHAH using HTML attributes.
-* alpine.js - Simple interractivity using HTML attributes
+- https://pypi.org/project/django-mailer/ - Simple email queue stored in the database.
+- https://github.com/vintasoftware/django-templated-email - Nicer way of making emails in Django
 
 # Licenses
 
@@ -50,29 +42,29 @@ This project is licenced under the 0BSD license. My intention is anybody can tak
 
 The licenses of the directly included Python dependencies are:
 
-* django - BSD 3-clause
-* psycopg2 - LGPL
-* django-extensions - MIT
-* whitenoise - MIT
-* circus - Apache v2
-* gunicorn - MIT
+- django - BSD 3-clause
+- uuid7 - MIT
+- psycopg - LGPL
+- django-filter - BSD
+- django-tables2 - BSD
+- django-crispy-forms - MIT
+- procrastinate - MIT
+- s6 - ISC (simplified MIT)
+- gunicorn - MIT
 
-* pytest - MIT
-* pytest-django - BSD 3-clause
-* pytest-cov - MIT
-* factory-boy - MIT
-* Werkzeug - BSD 3-clause
-* flake8 - MIT
-* pylint - GPLv2
-* pylint-django - GPLv2
+- pytest - MIT
+- pytest-django - BSD 3-clause
+- pytest-cov - MIT
+- factory-boy - MIT
+- flake8 - MIT
+- pylint - GPLv2
+- pylint-django - GPLv2
 
 And the CSS:
 
-* picocss - MIT
+- picocss - MIT
 
 And the JS:
 
-* parcel - MIT
-* concurrently - MIT
-* copy-and-watch - MIT
-* livereload - MIT
+- vite - MIT
+- sass - MIT
